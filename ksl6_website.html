@@ -1,0 +1,633 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>King Solomon Lodge #6 - F. & A.M. - Gallatin, Tennessee</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #fff;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .logo {
+            width: 80px;
+            height: 80px;
+            background: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .site-title h1 {
+            font-size: 28px;
+            margin-bottom: 5px;
+        }
+        
+        .site-title p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        nav {
+            background: #0f3460;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            gap: 10px;
+        }
+        
+        nav li {
+            margin: 0;
+        }
+        
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            display: block;
+            transition: background 0.3s;
+            border-radius: 4px;
+        }
+        
+        nav a:hover {
+            background: #1a1a2e;
+        }
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Active nav item removed (no highlight) */
+        
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23234567" width="1200" height="600"/></svg>');
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+            text-align: center;
+            padding: 100px 20px;
+        }
+        
+        .hero h2 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .hero p {
+            font-size: 20px;
+            max-width: 800px;
+            margin: 0 auto 10px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+        
+        .motto {
+            font-size: 24px;
+            font-style: italic;
+            margin-top: 15px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        
+        .section {
+            margin-bottom: 60px;
+            /* ensure section headers are not hidden behind the sticky nav */
+            scroll-margin-top: var(--nav-offset, 80px);
+        }
+        
+        .section h2 {
+            font-size: 32px;
+            color: #1a1a2e;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #0f3460;
+            padding-bottom: 10px;
+        }
+        
+        .history-highlight {
+            background: #f0f4f8;
+            border-left: 5px solid #0f3460;
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 4px;
+        }
+        
+        .history-highlight h3 {
+            color: #0f3460;
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+        
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .card {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+        
+        .card h3 {
+            color: #0f3460;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        
+        .card p {
+            color: #666;
+            line-height: 1.8;
+        }
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #0f3460;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .social-link svg {
+            width: 20px;
+            height: 20px;
+            fill: #0f3460;
+            flex-shrink: 0;
+        }
+
+        .social-link:hover svg,
+        .social-link:hover {
+            color: #1a1a2e;
+        }
+        
+        .officers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .officer-card {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .officer-card h4 {
+            color: #0f3460;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        
+        .officer-card .title {
+            color: #666;
+            font-size: 14px;
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+        
+        .officer-card .jewel {
+            font-size: 12px;
+            color: #888;
+        }
+        
+        .meeting-info {
+            background: #f8f9fa;
+            border-left: 4px solid #0f3460;
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 4px;
+        }
+        
+        .meeting-info h3 {
+            color: #1a1a2e;
+            margin-bottom: 15px;
+        }
+        
+        .meeting-info p {
+            margin: 10px 0;
+            font-size: 16px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: #0f3460;
+            color: #fff;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-top: 20px;
+            transition: background 0.3s;
+        }
+        
+        .cta-button:hover {
+            background: #1a1a2e;
+        }
+        
+        footer {
+            background: #1a1a2e;
+            color: #fff;
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 60px;
+        }
+        
+        footer p {
+            margin: 10px 0;
+        }
+        
+        footer a {
+            color: #88b4e6;
+            text-decoration: none;
+        }
+        
+        footer a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                justify-content: center;
+                text-align: center;
+            }
+            
+            .logo-section {
+                flex-direction: column;
+            }
+            
+            .hero h2 {
+                font-size: 32px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .officers-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <script>
+        (function () {
+            // Measure the nav height and set a CSS variable so scroll-margin-top and JS use it
+            function setNavOffset() {
+                const nav = document.querySelector('nav');
+                const navHeight = nav ? nav.getBoundingClientRect().height : 0;
+                document.documentElement.style.setProperty('--nav-offset', (navHeight + 8) + 'px');
+                return navHeight;
+            }
+
+            // Smooth scroll handler that accounts for nav height
+            function handleAnchorClicks(e) {
+                const anchor = e.target.closest('a');
+                if (!anchor) return;
+                const href = anchor.getAttribute('href');
+                if (href && href.startsWith('#')) {
+                    // special-case Home to go to the top of the document
+                    if (href === '#home' || href === '#top') {
+                        e.preventDefault();
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                        history.replaceState(null, '', href);
+                        return;
+                    }
+
+                    const target = document.querySelector(href);
+                    if (target) {
+                        e.preventDefault();
+                        const navHeight = setNavOffset();
+                        // compute target position minus nav height
+                        const rect = target.getBoundingClientRect();
+                        const offset = window.pageYOffset + rect.top - navHeight - 8; // extra gap
+                        window.scrollTo({ top: offset, behavior: 'smooth' });
+                        history.replaceState(null, '', href);
+                    }
+                }
+            }
+
+            let observer = null;
+
+            function setupObserver() {
+                if (observer) observer.disconnect();
+                const navHeight = setNavOffset();
+                const rootMargin = `0px 0px -${Math.round(window.innerHeight * 0.4 + navHeight)}px 0px`;
+
+                const navLinks = document.querySelectorAll('nav a');
+                const sections = Array.from(navLinks)
+                    .map(a => a.getAttribute('href'))
+                    .filter(h => h && h.startsWith('#'))
+                    .map(h => document.querySelector(h))
+                    .filter(Boolean);
+
+                observer = new IntersectionObserver((entries) => {
+                    // observer kept for future logic but no longer modifies nav classes
+                    // (left intentionally blank to avoid nav highlighting)
+                }, { root: null, rootMargin: rootMargin, threshold: 0 });
+
+                sections.forEach(s => observer.observe(s));
+            }
+
+            window.addEventListener('DOMContentLoaded', () => {
+                document.addEventListener('click', handleAnchorClicks);
+                setupObserver();
+            });
+
+            // Recompute on resize in case nav height or layout changes
+            window.addEventListener('resize', () => {
+                setNavOffset();
+                // debounce observer reset
+                clearTimeout(window.__ksl6_nav_resize);
+                window.__ksl6_nav_resize = setTimeout(() => setupObserver(), 150);
+            });
+        })();
+    </script>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo-section">
+                <div class="logo"><img src="logo.jpg" alt="King Solomon Lodge #6 logo"></div>
+                <div class="site-title">
+                    <h1>King Solomon Lodge #6</h1>
+                    <p>Free & Accepted Masons - Gallatin, Tennessee</p>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#history">History</a></li>
+            <li><a href="#officers">Officers</a></li>
+            <li><a href="#membership">Membership</a></li>
+            <li><a href="#socials">Socials</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+    
+    <div class="hero">
+        <h2>Welcome to King Solomon Lodge #6</h2>
+        <p>A Founding Lodge of the Grand Lodge of Tennessee</p>
+        <p>Chartered 1808 - Serving Gallatin for Over 200 Years</p>
+        <p class="motto">2B1 ASK 1</p>
+    </div>
+    
+    <div class="container">
+        <section id="about" class="section">
+            <h2>About Our Lodge</h2>
+            <p>King Solomon Lodge #6 is one of Tennessee's most historic Masonic lodges, located in Gallatin, Tennessee. We are a community of men committed to personal growth, charitable works, and the betterment of society through the timeless principles of Brotherly Love, Relief, and Truth.</p>
+            
+            <div class="meeting-info">
+                <h3>Regular Stated Meetings</h3>
+                <p><strong>When:</strong> First Thursday of each month</p>
+                <p><strong>Meal:</strong> 6:00 PM</p>
+                <p><strong>Meeting:</strong> 7:00 PM</p>
+                <p><strong>Where:</strong> 354 E Main Street, Gallatin, TN 37066</p>
+                <p><strong>Dress:</strong> Business Casual or better</p>
+            </div>
+        </section>
+        
+        <section id="history" class="section">
+            <h2>Our Rich History</h2>
+            
+            <div class="history-highlight">
+                <h3>A Founding Lodge of Tennessee</h3>
+                <p>Originally chartered in North Carolina as King Solomon Lodge #52, our lodge received its Tennessee charter in 1808. As a pioneer lodge, King Solomon Lodge #6 and its members helped form the Grand Lodge of Tennessee on December 27, 1813.</p>
+            </div>
+            
+            <div class="history-highlight">
+                <h3>Reclaiming Our Number</h3>
+                <p>In 2014, during Grand Lodge week, a historic moment occurred. After being known as Lodge #94 for 174 years, our lodge successfully petitioned to reclaim our original number #6, which was granted to us as a founding member of the Grand Lodge of Tennessee. Special thanks to Brother Ethan Slarke, Brother Robert Wade Lankford and all the brethren who worked tirelessly to restore this important piece of our heritage.</p>
+            </div>
+            
+            <div class="card-grid">
+                <div class="card">
+                    <h3>1808</h3>
+                    <p>King Solomon Lodge receives its charter in Tennessee, establishing itself as one of the pioneer lodges in the region.</p>
+                </div>
+                <div class="card">
+                    <h3>1813</h3>
+                    <p>Our members help establish the Grand Lodge of Tennessee on December 27, marking a pivotal moment in Tennessee Masonic history.</p>
+                </div>
+                <div class="card">
+                    <h3>2014</h3>
+                    <p>After 174 years as Lodge #94, we successfully reclaim our founding number, once again becoming King Solomon Lodge #6.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="officers" class="section">
+            <h2>2025 Lodge Officers</h2>
+            <p>Our lodge is led by dedicated officers who serve the brethren and uphold our Masonic traditions.</p>
+            
+            <div class="officers-grid">
+                <div class="officer-card">
+                    <h4>Monty Green</h4>
+                    <p class="title">Worshipful Master</p>
+                    <p class="jewel">Jewel: The Square</p>
+                </div>
+                <div class="officer-card">
+                    <h4>Eddie Pollard</h4>
+                    <p class="title">Senior Warden</p>
+                    <p class="jewel">Jewel: The Level</p>
+                </div>
+                <div class="officer-card">
+                    <h4>Jeremy McMahon</h4>
+                    <p class="title">Junior Warden</p>
+                    <p class="jewel">Jewel: The Plumb</p>
+                </div>
+                <div class="officer-card">
+                    <h4>James Lampley, PM</h4>
+                    <p class="title">Treasurer</p>
+                    <p class="jewel">Jewel: Crossed Keys</p>
+                </div>
+                <div class="officer-card">
+                    <h4>George Snow, PM</h4>
+                    <p class="title">Secretary</p>
+                    <p class="jewel">Jewel: Crossed Quill Pens</p>
+                </div>
+                <div class="officer-card">
+                    <h4>Robbie Pollard</h4>
+                    <p class="title">Senior Deacon</p>
+                    <p class="jewel">Jewel: Square & Compass with Sun</p>
+                </div>
+                <div class="officer-card">
+                    <h4>Jim Scruggs</h4>
+                    <p class="title">Junior Deacon</p>
+                    <p class="jewel">Jewel: Square & Compass with Moon</p>
+                </div>
+                <div class="officer-card">
+                    <h4>Mike Lenart</h4>
+                    <p class="title">Senior Steward</p>
+                    <p class="jewel">Jewel: Cornucopia</p>
+                </div>
+                <div class="officer-card">
+                    <h4>Jeff Fullerton</h4>
+                    <p class="title">Junior Steward</p>
+                    <p class="jewel">Jewel: Cornucopia</p>
+                </div>
+                <div class="officer-card">
+                    <h4>Bob Krauth</h4>
+                    <p class="title">Tiler</p>
+                    <p class="jewel">Jewel: The Sword</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="pillars" class="section">
+            <h2>Our Three Great Pillars</h2>
+            <div class="card-grid">
+                <div class="card">
+                    <h3>Brotherly Love</h3>
+                    <p>We cultivate bonds of friendship and mutual support among our members, treating each brother with respect, kindness, and understanding.</p>
+                </div>
+                <div class="card">
+                    <h3>Relief</h3>
+                    <p>We provide assistance to those in need, supporting our brothers, their families, and our community through charitable works and mutual aid.</p>
+                </div>
+                <div class="card">
+                    <h3>Truth</h3>
+                    <p>We pursue knowledge and wisdom, striving to live with integrity and honor while seeking light in all its forms.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="membership" class="section">
+            <h2>Becoming a Mason</h2>
+            <p>Freemasonry is open to men of good character who believe in a Supreme Being and seek to improve themselves while serving their community. The journey begins with a petition and leads to lifelong brotherhood.</p>
+            
+            <div class="card-grid">
+                <div class="card">
+                    <h3>Requirements</h3>
+                    <p>Be a man of at least 18 years of age, believe in a Supreme Being, be of good moral character, and come of your own free will.</p>
+                </div>
+                <div class="card">
+                    <h3>The Process</h3>
+                    <p>Submit a petition, meet with members, receive approval from the lodge, and participate in three meaningful degrees of initiation.</p>
+                </div>
+                <div class="card">
+                    <h3>What to Expect</h3>
+                    <p>Lifelong friendships, personal growth, opportunities to serve, and connection to a centuries-old tradition of excellence.</p>
+                </div>
+            </div>
+            
+            <p style="text-align: center; margin-top: 30px; font-size: 20px; font-weight: bold;">2B1 ASK 1</p>
+        </section>
+        
+        <section id="socials" class="section">
+            <h2>Socials</h2>
+            <p>Connect with King Solomon Lodge #6 on social media:</p>
+            <div class="card" role="link" tabindex="0" aria-label="Open King Solomon Lodge #6 on Facebook (opens in new tab)" onclick="window.open('https://www.facebook.com/King-Solomon-Lodge-6-F-AM-135124969913600/','_blank');" onkeydown="if(event.key==='Enter' || event.key===' ' || event.key==='Spacebar'){ event.preventDefault(); window.open('https://www.facebook.com/King-Solomon-Lodge-6-F-AM-135124969913600/','_blank'); }">
+                <h3>Facebook</h3>
+                <p>
+                    <a class="social-link" href="https://www.facebook.com/King-Solomon-Lodge-6-F-AM-135124969913600/" target="_blank" rel="noopener">
+                        <!-- Facebook SVG (inline) -->
+                        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" role="img">
+                            <path d="M22 12.07C22 6.48 17.52 2 11.93 2S2 6.48 2 12.07C2 17.09 5.66 21.26 10.44 22v-7.03H7.9v-2.9h2.54V9.41c0-2.5 1.49-3.88 3.77-3.88 1.09 0 2.23.2 2.23.2v2.45h-1.25c-1.23 0-1.61.76-1.61 1.54v1.84h2.74l-.44 2.9h-2.3V22C18.34 21.26 22 17.09 22 12.07z"/>
+                        </svg>
+                        <span>King Solomon Lodge #6 on Facebook</span>
+                    </a>
+                </p>
+            </div>
+        </section>
+
+        <section id="contact" class="section">
+            <h2>Contact Us</h2>
+            <div class="meeting-info">
+                <h3>King Solomon Lodge #6</h3>
+                <p><strong>Address:</strong> 354 E Main Street, Gallatin, TN 37066</p>
+                <p><strong>Phone:</strong> (615) 452-8044</p>
+                <p><strong>Email:</strong> kingsolomonlodge6@gmail.com</p>
+                <p><strong>Mailing:</strong> P.O. Box 1135, Gallatin, TN 37066</p>
+                <p style="margin-top: 20px;">We welcome inquiries from interested men and visiting brothers. Please reach out to learn more about our lodge or to schedule a visit.</p>
+                <p style="margin-top: 18px; text-align: center;">
+                    <a class="cta-button" href="http://www.frankoakes3.com/KingSolomon6Text.html" target="_blank" rel="noopener">Member Portal</a>
+                </p>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <p>&copy; 2025 King Solomon Lodge #6, F. & A.M.</p>
+        <p>354 E Main Street, Gallatin, TN 37066</p>
+        <p><a href="mailto:kingsolomonlodge6@gmail.com">kingsolomonlodge6@gmail.com</a> | (615) 452-8044</p>
+        <p>www.ksl6.org</p>
+        <p style="margin-top: 20px;">A Founding Lodge of the <a href="http://www.grandlodge-tn.org" target="_blank">Grand Lodge of Tennessee</a></p>
+        <p>Brotherly Love • Relief • Truth</p>
+    </footer>
+</body>
+</html>
