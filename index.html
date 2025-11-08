@@ -77,6 +77,16 @@
             top: 0;
             z-index: 100;
         }
+        /* mobile nav toggle button (hidden on desktop) */
+        #nav-toggle {
+            display: none;
+            background: none;
+            border: 0;
+            color: #fff;
+            font-size: 26px;
+            padding: 8px 12px;
+            cursor: pointer;
+        }
         
         nav ul {
             list-style: none;
@@ -291,6 +301,11 @@
         .cta-button:hover {
             background: #1a1a2e;
         }
+
+        /* Mobile-specific nav open state */
+        nav.open ul {
+            display: flex;
+        }
         
         footer {
             background: #1a1a2e;
@@ -326,9 +341,65 @@
             .hero h2 {
                 font-size: 32px;
             }
-            
+
+            .hero {
+                padding: 60px 20px;
+            }
+
             .hero p {
                 font-size: 18px;
+            }
+
+                /* Show the nav toggle and collapse nav by default on small screens */
+                /* Make the blue nav bar thicker and place the toggle fully inside it */
+                nav {
+                    padding: 18px 0; /* thicker blue bar */
+                }
+
+                #nav-toggle {
+                    display: block;
+                    position: absolute;
+                    right: 14px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    z-index: 200;
+                    background: transparent;
+                    width: 44px;
+                    height: 44px;
+                    border-radius: 6px;
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+            nav ul {
+                display: none; /* hidden until toggle opens it */
+                flex-direction: column;
+                align-items: stretch;
+                gap: 8px;
+                padding: 10px 20px;
+            }
+
+            nav.open ul {
+                display: flex;
+            }
+
+            nav.open ul a {
+                padding: 12px 16px;
+                border-radius: 4px;
+            }
+
+            .logo {
+                width: 64px;
+                height: 64px;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
+            .cta-button {
+                padding: 12px 20px;
             }
             
             nav ul {
@@ -429,6 +500,7 @@
     </header>
     
     <nav>
+        <button id="nav-toggle" aria-expanded="false" aria-label="Toggle navigation">☰</button>
         <ul>
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About Us</a></li>
@@ -630,5 +702,34 @@
         <p style="margin-top: 20px;">A Founding Lodge of the <a href="http://www.grandlodge-tn.org" target="_blank">Grand Lodge of Tennessee</a></p>
         <p>Brotherly Love • Relief • Truth</p>
     </footer>
+    <script>
+        (function(){
+            const nav = document.querySelector('nav');
+            const toggle = document.getElementById('nav-toggle');
+            if(!nav || !toggle) return;
+
+            function setExpanded(val){
+                toggle.setAttribute('aria-expanded', String(val));
+                if(val) nav.classList.add('open'); else nav.classList.remove('open');
+            }
+
+            toggle.addEventListener('click', (e)=>{
+                const isOpen = nav.classList.contains('open');
+                setExpanded(!isOpen);
+            });
+
+            // Close when clicking outside (mobile)
+            document.addEventListener('click', (e)=>{
+                if(!nav.classList.contains('open')) return;
+                if(e.target.closest('nav')) return;
+                setExpanded(false);
+            });
+
+            // Close on Escape
+            document.addEventListener('keydown', (e)=>{
+                if(e.key === 'Escape') setExpanded(false);
+            });
+        })();
+    </script>
 </body>
 </html>
