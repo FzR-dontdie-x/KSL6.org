@@ -118,9 +118,10 @@
         .section h2 { font-size: 32px; color: #1a1a2e; margin-bottom: 20px; border-bottom: 3px solid #0f3460; padding-bottom: 10px; }
 
         .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 20px; }
-        .card { background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
-        .card h3 { color: #0f3460; font-size: 20px; margin-bottom: 12px; }
-        .card p { color: #666; }
+        .card { background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); display: flex; align-items: center; gap: 15px; text-decoration: none; color: inherit; cursor: pointer; transition: box-shadow 0.3s; }
+        .card:hover { box-shadow: 0 6px 8px rgba(0,0,0,0.1); }
+        .card h3 { color: #0f3460; font-size: 28px; margin-bottom: 0; text-align: center; flex: 1; }
+        .card p { color: #666; font-size: 16px; }
 
         .bulletin-link { display: inline-block; margin-top: 10px; color: #0f3460; text-decoration: none; font-weight: 600; }
         .bulletin-link:hover { color: #1a1a2e; }
@@ -198,7 +199,8 @@
             // If you add new bulletins, add them to the `bulletins` array (or ask us to regenerate this page).
 
             const bulletins = [
-                { filename: "Lodge Bulletin January 2026.pdf", url: "Bulletins/Lodge Bulletin January 2026.pdf" }
+                { filename: "Lodge Bulletin January 2026.pdf", url: "Bulletins/Lodge Bulletin January 2026.pdf", cover: "Bulletins/Bulletin covers/cover_jan_2026.PNG" },
+                { filename: "Lodge Bulletin February 2026.pdf", url: "Bulletins/Lodge Bulletin February 2026.pdf", cover: "Bulletins/Bulletin covers/Feb_2026.PNG" }
             ];
 
             const months = {
@@ -246,25 +248,25 @@
                 }
 
                 enriched.forEach(item => {
-                    const card = document.createElement('div');
+                    const card = document.createElement('a');
                     card.className = 'card';
+                    card.href = item.url;
+                    card.target = '_blank';
+                    card.rel = 'noopener';
+
+                    if (item.cover) {
+                        const img = document.createElement('img');
+                        img.src = item.cover;
+                        img.alt = 'Bulletin cover';
+                        img.style.width = '120px';
+                        img.style.height = 'auto';
+                        img.style.borderRadius = '4px';
+                        card.appendChild(img);
+                    }
 
                     const h3 = document.createElement('h3');
                     h3.textContent = item.date ? formatDate(item.date) : item.filename;
                     card.appendChild(h3);
-
-                    const p = document.createElement('p');
-                    p.textContent = item.filename;
-                    card.appendChild(p);
-
-                    const a = document.createElement('a');
-                    a.className = 'bulletin-link';
-                    a.href = item.url;
-                    a.target = '_blank';
-                    a.rel = 'noopener';
-                    a.textContent = 'Open Bulletin (PDF)';
-
-                    card.appendChild(a);
 
                     container.appendChild(card);
                 });
