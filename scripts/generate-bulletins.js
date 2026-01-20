@@ -32,7 +32,32 @@ const path = require('path');
 
     try{
         const files = await fs.readdir(bulletinsDir);
+        const coverFiles = await fs.readdir(path.join(bulletinsDir, 'Bulletin covers'));
         const bulletins = files.filter(f=>/\.pdf$/i.test(f)).map(f=>({ filename: f, url: `Bulletins/${encodeURIComponent(f)}`, date: parseDateFromFilename(f) }));
+
+        // Function to find cover for a bulletin
+        function findCover(bulletin) {
+            if (!bulletin.date) return null;
+            const year = bulletin.date.getFullYear();
+            const month = bulletin.date.getMonth();
+            const monthNames = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
+            const shortMonth = monthNames[month];
+            // Look for cover_jan_2026.PNG or Feb_2026.PNG etc.
+            const possibleNames = [
+                `cover_${shortMonth}_${year}.PNG`,
+                `cover_${shortMonth}_${year}.png`,
+                `${shortMonth.charAt(0).toUpperCase() + shortMonth.slice(1)}_${year}.PNG`,
+                `${shortMonth.charAt(0).toUpperCase() + shortMonth.slice(1)}_${year}.png`
+            ];
+            for (const name of possibleNames) {
+                if (coverFiles.includes(name)) {
+                    return `Bulletins/Bulletin covers/${encodeURIComponent(name)}`;
+                }
+            }
+            return null;
+        }
+
+        bulletins.forEach(b => b.cover = findCover(b));
 
         bulletins.sort((a,b)=>{
             if(a.date && b.date) return b.date - a.date;
@@ -43,7 +68,8 @@ const path = require('path');
 
         const itemsHtml = bulletins.map(item => {
             const dateLabel = item.date ? formatDate(item.date) : item.filename;
-            return `                <div class="card">\n                    <h3>${escapeHtml(dateLabel)}</h3>\n                    <p>${escapeHtml(item.filename)}</p>\n                    <a class="bulletin-link" href="${item.url}" target="_blank" rel="noopener">Open Bulletin (PDF)</a>\n                </div>`;
+            const coverHtml = item.cover ? `<img src="${item.cover}" alt="Bulletin cover" style="width: 100%; height: auto; border-radius: 4px; margin-bottom: 12px;">\n                    ` : '';
+            return `                <div class="card">\n                    ${coverHtml}<h3>${escapeHtml(dateLabel)}</h3>\n                    <p>${escapeHtml(item.filename)}</p>\n                    <a class="bulletin-link" href="${item.url}" target="_blank" rel="noopener">Open Bulletin (PDF)</a>\n                </div>`;
         }).join('\n');
 
         const html = `<!DOCTYPE html>
