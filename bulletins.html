@@ -5,9 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>King Solomon Lodge #6 - Lodge Bulletins</title>
     <link rel="icon" type="image/x-icon" href="logo.jpg">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="visuals.css">
+    <script>
+        (function () {
+            function setNavOffset() {
+                const nav = document.querySelector('nav');
+                const navHeight = nav ? nav.getBoundingClientRect().height : 0;
+                document.documentElement.style.setProperty('--nav-offset', (navHeight + 8) + 'px');
+                return navHeight;
+            }
+            window.addEventListener('DOMContentLoaded', () => { setNavOffset(); });
+            window.addEventListener('resize', () => { setNavOffset(); });
+        })();
+    </script>
 </head>
 <body>
     <header>
@@ -21,7 +31,7 @@
             </div>
         </div>
     </header>
-    
+
     <nav>
         <button id="nav-toggle" aria-expanded="false" aria-label="Toggle navigation">Menu ☰</button>
         <ul>
@@ -35,6 +45,7 @@
             <li><a href="index.html#contact">Contact</a></li>
         </ul>
         <button id="dark-toggle" aria-pressed="false" title="Toggle dark mode">Dark Mode</button>
+    </nav>
 
     <div class="hero">
         <h2>Lodge Bulletins</h2>
@@ -44,48 +55,39 @@
     <div class="container">
         <section id="bulletins" class="section">
             <h2>Lodge Bulletins</h2>
-            <p>Below are our lodge bulletins. They are ordered with the newest listed first.</p>
+            <p>Below are our lodge bulletins, ordered with the newest listed first.</p>
 
             <div id="bulletin-container" class="card-grid bulletins" aria-live="polite">
-                <!-- Bulletins will be rendered here -->
+                <!-- Bulletins rendered by script below -->
             </div>
 
-            <p style="margin-top: 20px;"><a class="cta-button" href="index.html">Back to Home</a></p>
+            <p style="margin-top: 28px;"><a class="cta-button" href="index.html">&#8592; Back to Home</a></p>
         </section>
     </div>
 
     <footer>
         <p>&copy; 2026 King Solomon Lodge #6, F. &amp; A.M.</p>
         <p>354 E Main Street, Gallatin, TN 37066</p>
-        <p><a href="/cdn-cgi/l/email-protection#ff96919990bf948c93c9d1908d98"><span class="__cf_email__" data-cfemail="b1d8dfd7def1dac2dd879fdec3d6">[email&#160;protected]</span></a> | (615) 461-5712</p>
+        <p><a href="mailto:info@ksl6.org">info@ksl6.org</a> | (615) 461-5712</p>
         <p>www.ksl6.org</p>
         <p style="margin-top: 20px;">A Founding Lodge of the <a href="http://www.grandlodge-tn.org" target="_blank">Grand Lodge of Tennessee</a></p>
-        <p>Brotherly Love • Relief • Truth</p>
+        <p>Brotherly Love &bull; Relief &bull; Truth</p>
     </footer>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script>
+        // Bulletin renderer — add new issues to the bulletins array below
         (function(){
-            // Small helper to render the list of bulletins. This file is generated with the current files from the Bulletins folder.
-            // If you add new bulletins, add them to the `bulletins` array (or ask us to regenerate this page).
-
             const bulletins = [
-                { filename: "Lodge Bulletin January 2026.pdf", url: "Bulletins/Lodge Bulletin January 2026.pdf", cover: "Bulletins/Bulletin covers/cover_jan_2026.PNG" },
+                { filename: "Lodge Bulletin January 2026.pdf",  url: "Bulletins/Lodge Bulletin January 2026.pdf",  cover: "Bulletins/Bulletin covers/cover_jan_2026.PNG" },
                 { filename: "Lodge Bulletin February 2026.pdf", url: "Bulletins/Lodge Bulletin February 2026.pdf", cover: "Bulletins/Bulletin covers/Feb_2026.PNG" },
-                { filename: "Lodge Bulletin March 2026.pdf", url: "Bulletins/Lodge Bulletin March 2026.pdf", cover: "Bulletins/Bulletin covers/March bulleting cover page.PNG" }
+                { filename: "Lodge Bulletin March 2026.pdf",    url: "Bulletins/Lodge Bulletin March 2026.pdf",    cover: "Bulletins/Bulletin covers/March bulleting cover page.PNG" }
             ];
 
-            const months = {
-                january:0,february:1,march:2,april:3,may:4,june:5,july:6,august:7,september:8,october:9,november:10,december:11
-            };
+            const months = { january:0,february:1,march:2,april:3,may:4,june:5,july:6,august:7,september:8,october:9,november:10,december:11 };
 
             function parseDateFromFilename(name){
                 const m = name.match(/(January|February|March|April|May|June|July|August|September|October|November|December)\s+(\d{4})/i);
-                if(m){
-                    const month = months[m[1].toLowerCase()];
-                    const year = parseInt(m[2],10);
-                    return new Date(year, month, 1);
-                }
-                // try YEAR-MM-DD or YYYY formats
+                if(m) return new Date(parseInt(m[2],10), months[m[1].toLowerCase()], 1);
                 const y = name.match(/(\d{4})[-_](\d{2})[-_](\d{2})/);
                 if(y) return new Date(parseInt(y[1],10), parseInt(y[2],10)-1, parseInt(y[3],10));
                 const y2 = name.match(/(\d{4})/);
@@ -95,17 +97,17 @@
 
             function formatDate(d){
                 if(!d) return '';
-                const opts = { year: 'numeric', month: 'long' };
-                return d.toLocaleDateString(undefined, opts);
+                return d.toLocaleDateString(undefined, { year: 'numeric', month: 'long' });
             }
 
             function renderBulletins(){
                 const container = document.getElementById('bulletin-container');
+                if(!container) return;
                 container.innerHTML = '';
 
                 const enriched = bulletins.map(b => ({...b, date: parseDateFromFilename(b.filename)}));
                 enriched.sort((a,b)=>{
-                    if(a.date && b.date) return b.date - a.date; // newest first
+                    if(a.date && b.date) return b.date - a.date;
                     if(a.date) return -1;
                     if(b.date) return 1;
                     return a.filename.localeCompare(b.filename);
@@ -125,19 +127,21 @@
                     card.target = '_blank';
                     card.rel = 'noopener';
 
-                    if (item.cover) {
+                    if(item.cover){
                         const img = document.createElement('img');
                         img.src = item.cover;
-                        img.alt = 'Bulletin cover';
-                        img.style.width = '120px';
-                        img.style.height = 'auto';
-                        img.style.borderRadius = '4px';
+                        img.alt = 'Cover of ' + (item.date ? formatDate(item.date) : item.filename) + ' bulletin';
                         card.appendChild(img);
                     }
 
                     const h3 = document.createElement('h3');
                     h3.textContent = item.date ? formatDate(item.date) : item.filename;
                     card.appendChild(h3);
+
+                    const arrow = document.createElement('span');
+                    arrow.className = 'bulletin-link';
+                    arrow.textContent = 'Open PDF \u2192';
+                    card.appendChild(arrow);
 
                     container.appendChild(card);
                 });
@@ -148,7 +152,7 @@
     </script>
 
     <script>
-        // Small nav toggle behavior copied from index.html
+        // Nav toggle
         (function(){
             const nav = document.querySelector('nav');
             const toggle = document.getElementById('nav-toggle');
@@ -159,39 +163,38 @@
                 if(val) nav.classList.add('open'); else nav.classList.remove('open');
             }
 
-            toggle.addEventListener('click', (e)=>{
-                const isOpen = nav.classList.contains('open');
-                setExpanded(!isOpen);
+            toggle.addEventListener('click', ()=>{
+                setExpanded(!nav.classList.contains('open'));
             });
 
-            // Close when clicking outside (mobile)
             document.addEventListener('click', (e)=>{
                 if(!nav.classList.contains('open')) return;
                 if(e.target.closest('nav')) return;
                 setExpanded(false);
             });
 
-            // Close on Escape
             document.addEventListener('keydown', (e)=>{
                 if(e.key === 'Escape') setExpanded(false);
             });
         })();
     </script>
+
     <script>
-        // Dark/light toggle for site: toggles `.dark` on <html> and persists choice
+        // Dark / light mode toggle
         (function(){
-            const key = 'ksl6-dark-mode';  
+            const key = 'ksl6-dark-mode';
             const btn = document.getElementById('dark-toggle');
+
             function setDark(on){
-                if(on) document.documentElement.classList.add('dark'); else document.documentElement.classList.remove('dark');
-                    if(btn){
+                if(on) document.documentElement.classList.add('dark');
+                else   document.documentElement.classList.remove('dark');
+                if(btn){
                     btn.setAttribute('aria-pressed', String(!!on));
                     btn.textContent = on ? 'Light Mode' : 'Dark Mode';
                     btn.title = on ? 'Switch to light mode' : 'Switch to dark mode';
                 }
             }
 
-            // init from storage or system preference
             try{
                 const stored = localStorage.getItem(key);
                 if(stored !== null){
@@ -199,7 +202,7 @@
                 } else if(window.matchMedia){
                     setDark(window.matchMedia('(prefers-color-scheme: dark)').matches);
                 }
-            }catch(e){ /* ignore storage errors */ }
+            }catch(e){}
 
             if(btn){
                 btn.addEventListener('click', ()=>{
@@ -207,12 +210,7 @@
                     try{ localStorage.setItem(key, isDark ? '1' : '0'); }catch(e){}
                     setDark(isDark);
                 });
-                // use text label that fits nav theme instead of emoji icons
-                // ensure initial label is correct
-                (function(){
-                    const cur = document.documentElement.classList.contains('dark');
-                    setDark(cur);
-                })();
+                setDark(document.documentElement.classList.contains('dark'));
             }
         })();
     </script>
