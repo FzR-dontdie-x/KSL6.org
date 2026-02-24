@@ -6,32 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>King Solomon Lodge #6 - F. & A.M. - Gallatin, Tennessee</title>
     <link rel="icon" type="image/x-icon" href="logo.jpg">
-        <link rel="stylesheet" href="visuals.css">
-        <!-- Accessibility: Add skip to content link styles -->
-        <style>
-            .skip-link {
-                position: absolute;
-                left: -999px;
-                top: auto;
-                width: 1px;
-                height: 1px;
-                overflow: hidden;
-                z-index: 1000;
-                background: #fff;
-                color: #0f3460;
-                padding: 8px 16px;
-                border-radius: 4px;
-                font-weight: bold;
-            }
-            .skip-link:focus {
-                left: 16px;
-                top: 16px;
-                width: auto;
-                height: auto;
-                outline: 2px solid #0f3460;
-                box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-            }
-        </style>
+    <link rel="stylesheet" href="visuals.css">
     <script>
         (function () {
             // Measure the nav height and set a CSS variable so scroll-margin-top and JS use it
@@ -107,8 +82,7 @@
     </script>
 </head>
 <body>
-    <a href="#home" class="skip-link">Skip to main content</a>
-    <header role="banner">
+    <header>
         <div class="header-content">
             <div class="logo-section">
                 <div class="logo"><img src="logo.jpg" alt="King Solomon Lodge #6 logo"></div>
@@ -120,7 +94,7 @@
         </div>
     </header>
     
-    <nav role="navigation" aria-label="Main navigation">
+    <nav>
         <button id="nav-toggle" aria-expanded="false" aria-label="Toggle navigation">Menu ☰</button>
         <ul>
             <li><a href="#home">Home</a></li>
@@ -135,15 +109,15 @@
         <button id="dark-toggle" aria-pressed="false" title="Toggle dark mode">Dark Mode</button>
     </nav>
     
-    <main id="home" class="hero" tabindex="-1">
+    <div id="home" class="hero">
         <h2>Welcome to King Solomon Lodge #6</h2>
         <p>A Founding Lodge of the Grand Lodge of Tennessee</p>
         <p>Chartered 1808 - Serving Gallatin for Over 200 Years</p>
     </div>
     
-    <div class="container" id="main-content">
-        <section id="about" class="section" aria-labelledby="about-heading">
-            <h2 id="about-heading">About Our Lodge</h2>
+    <div class="container">
+        <section id="about" class="section">
+            <h2>About Our Lodge</h2>
             <p>King Solomon Lodge #6 is one of Tennessee's most historic Masonic lodges, located in Gallatin, Tennessee. We are a community of men committed to personal growth, charitable works, and the betterment of society through the timeless principles of Brotherly Love, Relief, and Truth.</p>
             
             <div class="meeting-info">
@@ -156,16 +130,16 @@
             </div>
         </section>
         
-        <section id="bulletins-preview" class="section" aria-labelledby="bulletins-heading">
-            <h2 id="bulletins-heading">Lodge Bulletins</h2>
+        <section id="bulletins-preview" class="section">
+            <h2>Lodge Bulletins</h2>
             <div class="card">
                 <p>Stay up to date with the latest lodge news, meeting notes, and events. Our bulletins are posted here regularly — newest first. Click below to view the full list of bulletins and open PDFs of recent issues.</p>
                 <p style="margin-top:18px;"><a class="cta-button" href="bulletins.html">View Lodge Bulletins</a></p>
             </div>
         </section>
 
-        <section id="history" class="section" aria-labelledby="history-heading">
-            <h2 id="history-heading">Our Rich History</h2>
+        <section id="history" class="section">
+            <h2>Our Rich History</h2>
             
             <div class="history-highlight">
                 <h3>A Founding Lodge of Tennessee</h3>
@@ -193,8 +167,8 @@
             </div>
         </section>
         
-        <section id="officers" class="section" aria-labelledby="officers-heading">
-            <h2 id="officers-heading">2026 Lodge Officers</h2>
+        <section id="officers" class="section">
+            <h2>2026 Lodge Officers</h2>
             <p>Our lodge is led by dedicated officers who serve the brethren and uphold our Masonic traditions.</p>
             
             <div class="officers-grid">
@@ -267,8 +241,8 @@
             </div>
         </section>
         
-        <section id="pillars" class="section" aria-labelledby="pillars-heading">
-            <h2 id="pillars-heading">Our Three Great Pillars</h2>
+        <section id="pillars" class="section">
+            <h2>Our Three Great Pillars</h2>
             <div class="card-grid">
                 <div class="card">
                     <h3>Brotherly Love</h3>
@@ -285,8 +259,8 @@
             </div>
         </section>
         
-        <section id="membership" class="section" aria-labelledby="membership-heading">
-            <h2 id="membership-heading">Becoming a Mason</h2>
+        <section id="membership" class="section">
+            <h2>Becoming a Mason</h2>
             <p>Freemasonry is open to men of good character who believe in a Supreme Being and seek to improve themselves while serving their community. The journey begins with a petition and leads to lifelong brotherhood.</p>
             
             <div class="card-grid">
@@ -305,8 +279,8 @@
             </div>
         </section>
         
-        <section id="socials" class="section" aria-labelledby="socials-heading">
-            <h2 id="socials-heading">Socials</h2>
+        <section id="socials" class="section">
+            <h2>Socials</h2>
             <p>Connect with King Solomon Lodge #6 on social media:</p>
             <div class="card" role="link" tabindex="0" aria-label="Open King Solomon Lodge #6 on Facebook (opens in new tab)" onclick="window.open('https://www.facebook.com/King-Solomon-Lodge-6-F-AM-135124969913600/','_blank');" onkeydown="if(event.key==='Enter' || event.key===' ' || event.key==='Spacebar'){ event.preventDefault(); window.open('https://www.facebook.com/King-Solomon-Lodge-6-F-AM-135124969913600/','_blank'); }">
                 <h3>Facebook</h3>
@@ -334,8 +308,8 @@
             </div>
         </section>
 
-        <section id="contact" class="section" aria-labelledby="contact-heading">
-            <h2 id="contact-heading">Contact Us</h2>
+        <section id="contact" class="section">
+            <h2>Contact Us</h2>
             <div class="meeting-info">
                 <h3>King Solomon Lodge #6</h3>
                 <p><strong>Address:</strong> 354 E Main Street, Gallatin, TN 37066</p>
@@ -351,15 +325,15 @@
         </section>
     </div>
     
-    <footer role="contentinfo">
+    <footer>
         <p>&copy; 2026 King Solomon Lodge #6, F. & A.M.</p>
         <p>354 E Main Street, Gallatin, TN 37066</p>
-        <p><a href="mailto:info@ksl6.org">info@ksl6.org</a> | (615) 461-5712</p>
+        <p><a href="/cdn-cgi/l/email-protection#0d64636b624d667e613b23627f6a"><span class="__cf_email__" data-cfemail="3950575f5679524a550f17564b5e">[email&#160;protected]</span></a> | (615) 461-5712</p>
         <p>www.ksl6.org</p>
         <p style="margin-top: 20px;">A Founding Lodge of the <a href="http://www.grandlodge-tn.org" target="_blank">Grand Lodge of Tennessee</a></p>
         <p>Brotherly Love • Relief • Truth</p>
     </footer>
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         (function(){
             const nav = document.querySelector('nav');
             const toggle = document.getElementById('nav-toggle');
