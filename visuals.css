@@ -182,10 +182,6 @@ nav {
 }
 
 #dark-toggle {
-    position: absolute;
-    right: 60px;
-    top: 50%;
-    transform: translateY(-50%);
     background: transparent;
     border: 1px solid rgba(184,146,42,0.3);
     color: var(--gold-pale);
@@ -195,9 +191,11 @@ nav {
     font-family: 'Cinzel', serif;
     font-size: 0.7rem;
     letter-spacing: 0.07em;
-    z-index: 210;
     transition: border-color 0.2s, background 0.2s;
     white-space: nowrap;
+    margin-left: auto;
+    align-self: center;
+    margin-right: 16px;
 }
 
 #dark-toggle:hover {
@@ -698,30 +696,48 @@ nav.open ul { display: flex; }
     .hero h2 { font-size: 1.9rem; }
     .hero p { font-size: 1.1rem; }
 
-    nav { padding: 0; }
-    #nav-toggle {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        position: absolute;
-        right: 14px;
-        top: 50%;
-        transform: translateY(-50%);
-        z-index: 200;
-        width: 44px;
-        height: 44px;
-        border-radius: var(--radius);
+    nav {
+        padding: 0;
+        flex-direction: column;
+        align-items: stretch;
     }
-    #dark-toggle { right: 66px; font-size: 0.65rem; padding: 5px 8px; }
+    #nav-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 8px;
+        padding: 14px 18px;
+        font-size: 0.78rem;
+        font-family: 'Cinzel', serif;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--gold-pale);
+        width: 100%;
+        border-radius: 0;
+        border-bottom: 1px solid rgba(184,146,42,0.15);
+    }
+    #dark-toggle {
+        display: none;
+        margin: 0;
+        align-self: stretch;
+        border-radius: 0;
+        border: none;
+        border-top: 1px solid rgba(184,146,42,0.15);
+        padding: 12px 18px;
+        font-size: 0.75rem;
+        text-align: left;
+        width: 100%;
+    }
+    nav.open #dark-toggle { display: block; }
     nav ul {
         display: none;
         flex-direction: column;
         align-items: stretch;
-        gap: 4px;
-        padding: 10px 16px 14px;
+        gap: 0;
+        padding: 6px 0 0;
     }
     nav.open ul { display: flex; }
-    nav a { padding: 11px 14px; font-size: 0.75rem; }
+    nav a { padding: 11px 18px; font-size: 0.75rem; }
     nav a::after { left: 0; right: 0; }
 
     .officers-grid { grid-template-columns: repeat(2, 1fr); }

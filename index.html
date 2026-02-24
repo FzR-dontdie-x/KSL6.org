@@ -95,7 +95,7 @@
     </header>
     
     <nav>
-        <button id="nav-toggle" aria-expanded="false" aria-label="Toggle navigation">☰</button>
+        <button id="nav-toggle" aria-expanded="false" aria-label="Toggle navigation">Menu ☰</button>
         <ul>
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About Us</a></li>
@@ -314,8 +314,8 @@
                 <h3>King Solomon Lodge #6</h3>
                 <p><strong>Address:</strong> 354 E Main Street, Gallatin, TN 37066</p>
                 <p><strong>Phone:</strong> (615) 461-5712</p>
-                <p><strong>General Email:</strong> info@ksl6.org</p>
-                <p><strong>Secretary Email:</strong> secretary@ksl6.org</p>
+                <p><strong>General Email:</strong> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="7811161e1738130b144e56170a1f">[email&#160;protected]</a></p>
+                <p><strong>Secretary Email:</strong> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="acdfc9cfdec9d8cdded5ecc7dfc09a82c3decb">[email&#160;protected]</a></p>
                 <p><strong>Mailing:</strong> P.O. Box 1135, Gallatin, TN 37066</p>
                 <p style="margin-top: 20px;">We welcome inquiries from interested men and visiting brothers. Please reach out to learn more about our lodge or to schedule a visit.</p>
                 <p style="margin-top: 18px; text-align: center;">
@@ -328,12 +328,12 @@
     <footer>
         <p>&copy; 2026 King Solomon Lodge #6, F. & A.M.</p>
         <p>354 E Main Street, Gallatin, TN 37066</p>
-        <p><a href="mailto:info@ksl6.org">info@ksl6.org</a> | (615) 461-5712</p>
+        <p><a href="/cdn-cgi/l/email-protection#0d64636b624d667e613b23627f6a"><span class="__cf_email__" data-cfemail="3950575f5679524a550f17564b5e">[email&#160;protected]</span></a> | (615) 461-5712</p>
         <p>www.ksl6.org</p>
         <p style="margin-top: 20px;">A Founding Lodge of the <a href="http://www.grandlodge-tn.org" target="_blank">Grand Lodge of Tennessee</a></p>
         <p>Brotherly Love • Relief • Truth</p>
     </footer>
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         (function(){
             const nav = document.querySelector('nav');
             const toggle = document.getElementById('nav-toggle');
@@ -392,16 +392,13 @@
                     try{ localStorage.setItem(key, isDark ? '1' : '0'); }catch(e){}
                     setDark(isDark);
                 });
-                // use text label that fits nav theme instead of emoji icons
-                // ensure initial label is correct
-                (function(){
-                    const cur = document.documentElement.classList.contains('dark');
-                    setDark(cur);
-                })();
-            }
-        })();
-    </script>
-    <!-- Metricool tracker -->
-    <script>function loadScript(a){var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}loadScript(function(){beTracker.t({hash:"da691752125db403dacfbd8f85920a2c"})});</script>
-</body>
-</html>
+                            // use text label that fits nav theme instead of emoji icons
+                            // ensure initial label is correct
+                            (function(){
+                                const cur = document.documentElement.classList.contains('dark');
+                                setDark(cur);
+                            })();
+                        }
+                    })();
+                </script>
+             
