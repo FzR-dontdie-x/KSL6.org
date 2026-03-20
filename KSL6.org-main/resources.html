@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>King Solomon Lodge #6 - Lodge Resources</title>
+    <link rel="icon" type="image/x-icon" href="logo.jpg">
+    <link rel="stylesheet" href="visuals.css">
+    <script>
+        (function () {
+            function setNavOffset() {
+                const nav = document.querySelector('nav');
+                const navHeight = nav ? nav.getBoundingClientRect().height : 0;
+                document.documentElement.style.setProperty('--nav-offset', (navHeight + 8) + 'px');
+                return navHeight;
+            }
+            window.addEventListener('DOMContentLoaded', () => { setNavOffset(); });
+            window.addEventListener('resize', () => { setNavOffset(); });
+        })();
+    </script>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo-section">
+                <div class="logo"><img src="logo.jpg" alt="King Solomon Lodge #6 logo"></div>
+                <div class="site-title">
+                    <h1>King Solomon Lodge #6</h1>
+                    <p>Free &amp; Accepted Masons - Gallatin, Tennessee</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <button id="nav-toggle" aria-expanded="false" aria-label="Toggle navigation">Menu ☰</button>
+        <ul>
+            <li><a href="index.html#home">Home</a></li>
+            <li><a href="index.html#about">About Us</a></li>
+            <li><a href="bulletins.html">Lodge Bulletins</a></li>
+            <li><a href="index.html#lodge-events">Lodge Events</a></li>
+            <li><a href="index.html#history">History</a></li>
+            <li><a href="index.html#officers">Officers</a></li>
+            <li><a href="index.html#membership">Membership</a></li>
+            <li><a href="index.html#socials">Socials</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+        <button id="dark-toggle" aria-pressed="false" title="Toggle dark mode">Dark Mode</button>
+    </nav>
+
+    <div class="hero">
+        <h2>Lodge Resources</h2>
+        <p>Official lodge documents and useful resources. Click any item to open the PDF.</p>
+    </div>
+
+    <div class="container">
+        <section id="resources" class="section">
+            <h2>Resources</h2>
+            <p>Below are important lodge documents.</p>
+
+            <div class="card-grid bulletins" aria-live="polite">
+                <a class="card bulletin" href="resources/By laws/KSL6 BYLAWS.pdf" target="_blank" rel="noopener">
+                    <img src="resources/By laws/by laws cover.PNG" alt="By laws cover">
+                    <h3>KSL6 BYLAWS</h3>
+                    <span class="bulletin-link">Open PDF</span>
+                </a>
+            </div>
+
+            <p style="margin-top: 28px;"><a class="cta-button" href="index.html">&#8592; Back to Home</a></p>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 King Solomon Lodge #6, F. &amp; A.M.</p>
+        <p>354 E Main Street, Gallatin, TN 37066</p>
+        <p><a href="mailto:info@ksl6.org">info@ksl6.org</a> | (615) 461-5712</p>
+        <p>www.ksl6.org</p>
+        <p style="margin-top: 20px;">A Founding Lodge of the <a href="http://www.grandlodge-tn.org" target="_blank">Grand Lodge of Tennessee</a></p>
+        <p>Brotherly Love &bull; Relief &bull; Truth</p>
+    </footer>
+
+    <script>
+        // Nav toggle
+        (function(){
+            const nav = document.querySelector('nav');
+            const toggle = document.getElementById('nav-toggle');
+            if(!nav || !toggle) return;
+
+            function setExpanded(val){
+                toggle.setAttribute('aria-expanded', String(val));
+                if(val) nav.classList.add('open'); else nav.classList.remove('open');
+            }
+
+            toggle.addEventListener('click', ()=>{
+                setExpanded(!nav.classList.contains('open'));
+            });
+
+            document.addEventListener('click', (e)=>{
+                if(!nav.classList.contains('open')) return;
+                if(e.target.closest('nav')) return;
+                setExpanded(false);
+            });
+
+            document.addEventListener('keydown', (e)=>{
+                if(e.key === 'Escape') setExpanded(false);
+            });
+        })();
+    </script>
+
+    <script>
+        // Dark / light mode toggle
+        (function(){
+            const key = 'ksl6-dark-mode';
+            const btn = document.getElementById('dark-toggle');
+
+            function setDark(on){
+                if(on) document.documentElement.classList.add('dark');
+                else   document.documentElement.classList.remove('dark');
+                if(btn){
+                    btn.setAttribute('aria-pressed', String(!!on));
+                    btn.textContent = on ? 'Light Mode' : 'Dark Mode';
+                    btn.title = on ? 'Switch to light mode' : 'Switch to dark mode';
+                }
+            }
+
+            try{
+                const stored = localStorage.getItem(key);
+                if(stored !== null){
+                    setDark(stored === '1');
+                } else if(window.matchMedia){
+                    setDark(window.matchMedia('(prefers-color-scheme: dark)').matches);
+                }
+            }catch(e){}
+
+            if(btn){
+                btn.addEventListener('click', ()=>{
+                    const isDark = document.documentElement.classList.toggle('dark');
+                    try{ localStorage.setItem(key, isDark ? '1' : '0'); }catch(e){}
+                    setDark(isDark);
+                });
+                setDark(document.documentElement.classList.contains('dark'));
+            }
+        })();
+    </script>
+</body>
+</html>
