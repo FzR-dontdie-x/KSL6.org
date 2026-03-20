@@ -429,6 +429,8 @@ nav a:hover::after { transform: scaleX(1); }
 .card:hover::before { opacity: 1; }
 
 #bulletins-preview .card:hover { transform: none; box-shadow: var(--card-shadow); }
+#lodge-events .card:hover { transform: none; box-shadow: var(--card-shadow); border-color: var(--border); }
+#lodge-events .card:hover::before { opacity: 0; }
 
 .card h3 {
     font-family: 'Cinzel', serif;
@@ -672,6 +674,17 @@ footer a:hover { text-decoration: underline; color: var(--gold-pale); }
     border: 1px solid var(--border);
 }
 
+/* Event image: full-width and responsive inside cards */
+.card .event-image {
+    width: 100%;
+    max-width: 50%;
+    height: auto;
+    margin: 0 auto;
+    border-radius: var(--radius);
+    display: block;
+    border: 1px solid var(--border);
+}
+
 .card.bulletin h3 {
     text-align: left;
     font-size: 1.1rem;
@@ -748,6 +761,7 @@ nav.open ul { display: flex; }
     .container { padding: 32px 18px; }
     .section { margin-bottom: 52px; }
     .cta-button { padding: 11px 22px; }
+    .card .event-image { max-width: 100%; }
 }
 
 @media (max-width: 480px) {
