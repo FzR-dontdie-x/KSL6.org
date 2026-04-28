@@ -109,20 +109,29 @@
         </ul>
         <button id="dark-toggle" aria-pressed="false" title="Toggle dark mode">Dark Mode</button>
     </nav>
-</head>
-<body>
     <div class="container">
-        <section class="section">
+        <section id="lodge-events" class="section">
             <h2>Upcoming Lodge Events</h2>
             <div class="card-grid">
                 <div class="card">
-                    <img src="resources/pancakes.png" alt="Pancake Breakfast" class="event-image">
-                    <h3>Pancake Breakfast</h3>
-                    <p>Join us for our annual Pancake Breakfast! All are welcome. Check back for date and details.</p>
+                    <img src="resources/Events/KSL Speaker series 1 wes lackey.png" alt="Speaker Series May" class="event-image">
+                    <h3>Speaker Series</h3>
+                    <p>Join us May 21st for our May speaker series. Eat at 6pm, event starts at 7pm. </p>
+                </div>
+                <div class="card">
+                    <img src="resources/Events/ksl boil for posting.png" alt="Crawfish Boil June" class="event-image">
+                    <h3>Crawfish Boil</h3>
+                    <p>Join us June 13th for our annual crawfish boil! Pickup starts at noon and goes until 4pm. </p>
                 </div>
                 <!-- Add more event cards here as needed -->
             </div>
         </section>
+    </div>
+    <!-- Modal for displaying event images -->
+    <div id="image-modal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="modal-image">
+        <div id="caption"></div>
     </div>
     <footer>
         <p>&copy; 2026 King Solomon Lodge #6, F. & A.M.</p>
@@ -165,5 +174,52 @@
                 });
             }
         })();
+
+        // Event image modal functionality
+        (function(){
+            const modal = document.getElementById('image-modal');
+            const modalImg = document.getElementById('modal-image');
+            const captionText = document.getElementById('caption');
+            const closeBtn = document.querySelector('#image-modal .close');
+
+            function openModal(img) {
+                modal.style.display = 'block';
+                modalImg.src = img.src;
+                modalImg.alt = img.alt || '';
+                captionText.textContent = img.alt || '';
+            }
+
+            function closeModal() {
+                modal.style.display = 'none';
+                modalImg.src = '';
+            }
+
+            document.querySelectorAll('#lodge-events .card').forEach(card => {
+                card.addEventListener('click', function() {
+                    const img = this.querySelector('.event-image');
+                    if (img) {
+                        openModal(img);
+                    }
+                });
+            });
+
+            document.querySelectorAll('#lodge-events .card .event-image').forEach(image => {
+                image.addEventListener('click', function(event) {
+                    event.stopPropagation();
+                    openModal(this);
+                });
+            });
+
+            closeBtn.addEventListener('click', closeModal);
+            modal.addEventListener('click', function(event) {
+                if (event.target === modal) {
+                    closeModal();
+                }
+            });
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape' && modal.style.display === 'block') {
+                    closeModal();
+                }
+            });
+        })();
     </script>
-</html>
