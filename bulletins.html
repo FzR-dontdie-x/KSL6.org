@@ -60,7 +60,7 @@
             <p>Below are our lodge bulletins, ordered with the newest listed first.</p>
 
             <div id="bulletin-container" class="card-grid bulletins" aria-live="polite">
-                <!-- Bulletins rendered by script below -->
+                <p class="loading-placeholder">Loading bulletins…</p>
             </div>
 
             <p style="margin-top: 28px;"><a class="cta-button" href="index.html">&#8592; Back to Home</a></p>
@@ -85,8 +85,8 @@
                 { filename: "Lodge Bulletin March 2026.pdf",    url: "Bulletins/Lodge Bulletin March 2026.pdf",    cover: "Bulletins/Bulletin covers/March bulleting cover page.PNG" },
                 { filename: "Lodge Bulletin April 2026.pdf",    url: "Bulletins/Lodge Bulletin April 2026.pdf",    cover: "Bulletins/Bulletin covers/april cover page ksl6.PNG" },
                 { filename: "Lodge Bulletin MAY 2026.pdf",      url: "Bulletins/Lodge Bulletin MAY 2026.pdf",      cover: "Bulletins/Bulletin covers/Bulletin Cover page MAY 2026.PNG" },
-                { Filename: "Lodge Bulletin JUNE 2026.pdf",     url: "Bulletins/Lodge Bulletin JUNE 2026.pdf",     cover: "Bulletins/Bulletin covers/lodge JUNE cover page.png" },
-                { Filename: "Lodge Bulletin JULY 2026.pdf",     url: "Bulletins/Lodge Bulletin JULY 2026.pdf",     cover: "Bulletins/Bulletin covers/July web cover page.png" }
+                { filename: "Lodge Bulletin JUNE 2026.pdf",     url: "Bulletins/Lodge Bulletin JUNE 2026.pdf",     cover: "Bulletins/Bulletin covers/lodge JUNE cover page.png" },
+                { filename: "Lodge Bulletin JULY 2026.pdf",     url: "Bulletins/Lodge Bulletin JULY 2026.pdf",     cover: "Bulletins/Bulletin covers/July web cover page.png" }
             ];
 
             const months = { january:0,february:1,march:2,april:3,may:4,june:5,july:6,august:7,september:8,october:9,november:10,december:11 };
@@ -153,7 +153,11 @@
                 });
             }
 
-            document.addEventListener('DOMContentLoaded', renderBulletins);
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', renderBulletins);
+            } else {
+                renderBulletins();
+            }
         })();
     </script>
 
